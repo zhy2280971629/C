@@ -1,0 +1,41 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+#include<stdlib.h>
+int Search(int arr[], int key)
+{
+	int mid = 0, left = 0, right = strlen(arr) - 1;
+	while (left <= right)
+	{
+		mid = (left + right) / 2;
+		if (arr[mid] < key)
+		{
+			left = mid + 1;
+		}
+		else if (arr[mid]>key)
+		{
+			right = mid - 1;
+		}
+		else
+			return mid;
+	}
+	return -1;
+}
+int main()
+{
+	int A[6] = { 13, 24, 32, 49, 51, 68 };
+	int mid=0 , left=0 , right = strlen(A) - 1;
+	int ret = Search(A, 49);
+	if (ret == -1)
+	{
+		printf("找不到\n");
+	}
+	else
+	{
+		printf("找到了，下标是%d\n", mid);
+	}
+	Search(A, 49);
+	system("pause");
+	return 0;
+}
