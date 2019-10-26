@@ -1,0 +1,13 @@
+import java.util.Scanner;
+public class Main {
+	public static void circleArea(int r) {
+		double PI=Math.PI;
+		double Area=PI*r*r;
+		System.out.printf("%.7f",Area);
+		}
+	public static void main(String[] args) {
+		Scanner input=new Scanner(System.in);
+		int r=input.nextInt();
+		circleArea(r);
+	}
+}
