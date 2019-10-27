@@ -29,11 +29,11 @@ int main()
 	int ret = Search(A, 49);
 	if (ret == -1)
 	{
-		printf("找不到\n");
+		printf("脮脪虏禄碌陆\n");
 	}
 	else
 	{
-		printf("找到了，下标是%d\n", mid);
+		printf("脮脪碌陆脕脣拢卢脧脗卤锚脢脟%d\n", mid);
 	}
 	Search(A, 49);
 	system("pause");
