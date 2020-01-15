@@ -4,6 +4,7 @@
 给定 nums = [3,2,2,3], val = 3,
 函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。
 你不需要考虑数组中超出新长度后面的元素。
+(1)
 public int removeElement(int[] nums, int val) {
         int count = 0;
         for(int i = 0;i < nums.length;i++){
@@ -14,4 +15,15 @@ public int removeElement(int[] nums, int val) {
             }
         }
         return nums.length - count;
+    }
+    
+  (2)
+  public int removeElement(int[] nums, int val) {
+        int j = 0;
+        for(int i = 0;i < nums.length;i++){
+            if(nums[i] != val){
+                nums[j++] = nums[i];
+            }
+        }
+        return j;
     }
