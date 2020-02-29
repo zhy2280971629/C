@@ -21,17 +21,17 @@ public class binTree {
     //中序遍历
     public void inOrder(BTNode root){
         if(null != root){
-            preOrder(root.left);
+            inOrder(root.left);
             System.out.println(root.val + " ");
-            preOrder(root.right);
+            inOrder(root.right);
         }
     }
 
     //后序遍历
     public void postOrder(BTNode){
         if(null != root){
-            preOrder(root.left);
-            preOrder(root.right);
+            postOrder(root.left);
+            postOrder(root.right);
             System.out.println(root.val + " ");
         }
     }
