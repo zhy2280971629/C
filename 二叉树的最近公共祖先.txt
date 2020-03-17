@@ -6,6 +6,7 @@
 输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
 输出: 3
 解释: 节点 5 和节点 1 的最近公共祖先是节点 3。
+（1）
 public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if(null == root){
             return root;
@@ -19,4 +20,50 @@ public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
             return root;
         }
         return null == left ? right : left;
+    }
+（2）
+public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(null == root || null == p || null == q){
+            return null;
+        }
+        Stack<TreeNode> pPath = new Stack<>();
+        Stack<TreeNode> qPath = new Stack<>();
+        getNodePath(root, p, pPath);
+        getNodePath(root, q, qPath);
+
+        int psize = pPath.size();
+        int qsize = qPath.size();
+
+        while(psize != 0 && qsize != 0){
+            if(psize > qsize){
+                pPath.pop();
+                psize--;
+            }else if(qsize > psize){
+                qPath.pop();
+                qsize--;
+            }else{
+                if(pPath.peek() != qPath.peek()){
+                    pPath.pop();
+                    qPath.pop();
+                }else{
+                    return pPath.peek();
+                }
+            }
+        }
+        return root;
+    }
+    private boolean getNodePath(TreeNode root, TreeNode node, Stack<TreeNode> sPath){
+        if(null == root){
+            return false;
+        }
+        sPath.push(root);
+        if(node == root){
+            return true;
+        }
+        //递归到根的左子树或右子树找node路径
+        if(getNodePath(root.left, node, sPath) || getNodePath(root.right, node, sPath)){
+            return true;
+        }
+        sPath.pop();
+        return false;
     }
