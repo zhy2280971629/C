@@ -1,0 +1,20 @@
+#include<stdio.h>
+#include<string.h>
+#include<windows.h>
+int main()
+{
+   char str[] = "welcome to here";
+   char str2[] = "###############";
+   int left = 0;
+   int right = strlen(str) - 1;
+   while(left<right)
+    {
+       Sleep(1000);
+       str2[left] = str[left];
+       str2[right] = str[right];
+       left++;
+       right--;
+       printf("%s\n",str2);
+    }
+   return 0;
+}
