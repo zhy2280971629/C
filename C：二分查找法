@@ -29,11 +29,11 @@ int main()
 	int ret = Search(A, 49);
 	if (ret == -1)
 	{
-		printf("ÕÒ²»µ½\n");
+		printf("没找到\n");
 	}
 	else
 	{
-		printf("ÕÒµ½ÁË£¬ÏÂ±êÊÇ%d\n", mid);
+		printf("该数字在数组中的下标为\n", mid);
 	}
 	Search(A, 49);
 	system("pause");
