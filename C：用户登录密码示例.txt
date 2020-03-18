@@ -1,0 +1,21 @@
+#include<stdio.h>
+int main()
+{
+  char password[10];
+  int count = 3;
+  while(count>0)
+  {
+     printf("请输入您的密码:");
+     scanf("%s",password);
+     if(sttrcmp(password,"123456")==0)
+      {
+         printf("登录成功\n");
+         break;
+       }
+       else
+       {
+           count--;
+           printf("密码错误，您还有%d次机会\n",count);
+       }
+   return 0;
+}
