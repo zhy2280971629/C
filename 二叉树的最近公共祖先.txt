@@ -26,11 +26,15 @@ public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if(null == root || null == p || null == q){
             return null;
         }
+        //获取p和q在root中的路径
         Stack<TreeNode> pPath = new Stack<>();
         Stack<TreeNode> qPath = new Stack<>();
         getNodePath(root, p, pPath);
         getNodePath(root, q, qPath);
-
+        //两个路径对应栈：1.应该让节点个数多的先出栈到元素个数相同
+                                      2.依次比较两个栈顶的元素
+                                      a.相等-->即最近的公共祖先
+                                      b.不相等-->出栈
         int psize = pPath.size();
         int qsize = qPath.size();
 
@@ -52,6 +56,7 @@ public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         }
         return root;
     }
+   //获取节点的路径
     private boolean getNodePath(TreeNode root, TreeNode node, Stack<TreeNode> sPath){
         if(null == root){
             return false;
@@ -65,5 +70,55 @@ public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
             return true;
         }
         sPath.pop();
+        return false;
+    }
+（3）
+public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null || p == null || q == null){
+            return null;
+        }
+        //如果一个节点在根的位置，最近公共祖先一定是根节点
+        if(p == root || q == root){
+            return root;
+        }
+        //检测p和q在root子树中的情况
+        boolean pInLeft = false;
+        boolean pInRight = false;
+        boolean qInLeft = false;
+        boolean qInRight = false;
+        //检测p在root子树中的情况
+        if(isNodeInTree(root.left, p)){
+            pInLeft = true;
+        }else{
+            pInRight = true;
+        }
+        //检测q在root子树中的情况
+        if(isNodeInTree(root.left, q)){
+            qInLeft = true; 
+        }else{
+            qInRight = true;
+        }
+        //p和q分别在root的左右子树中
+        if((pInLeft && qInRight) || (pInRight && qInLeft)){
+            return root;
+        }
+        else if(pInLeft && qInLeft){
+            return lowestCommonAncestor(root.left, p, q);
+        }
+        else{
+            return lowestCommonAncestor(root.right, p, q);
+        }
+    }
+    //检测一个节点是否在二叉树中
+    private boolean isNodeInTree(TreeNode root, TreeNode node){
+        if(root == null){
+            return false;
+        }
+        if(root == node){
+            return true;
+        }
+        if(isNodeInTree(root.left, node) || isNodeInTree(root.right, node)){
+            return true;
+        }
         return false;
     }
